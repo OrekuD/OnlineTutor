@@ -1,12 +1,12 @@
 import React, { ReactNode } from "react";
 import { Text as DefaultText, View, StyleSheet, TextStyle } from "react-native";
-import { white, black, grey, lightgrey } from "../constants/Colors";
+import { white, black, grey, lightgrey, purple } from "../constants/Colors";
 
 interface TextProps {
   children: ReactNode;
   style?: TextStyle;
   variant: "title" | "headline" | "body" | "subhead" | "caption";
-  color?: "white" | "grey" | "lightgrey";
+  color?: "white" | "grey" | "lightgrey" | "purple";
   numberOfLines?: number;
 }
 
@@ -50,6 +50,9 @@ const Text = ({
     case "lightgrey":
       textColor = lightgrey;
       break;
+    case "purple":
+      textColor = purple;
+      break;
     default:
       textColor = black;
       break;
@@ -86,7 +89,7 @@ const styles = StyleSheet.create({
   },
   subhead: {
     fontSize: 20,
-    fontFamily: "SFProDisplay-Regular",
+    fontFamily: "SFProDisplay-Medium",
   },
   caption: {
     fontSize: 18,

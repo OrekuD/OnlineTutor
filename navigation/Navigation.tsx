@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { BottomTabParamList, HomeStackParamList } from "../types";
 import { Home } from "../screens";
 import { Feather } from "@expo/vector-icons";
+import { purple } from "../constants/Colors";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const HomeStack = createStackNavigator<HomeStackParamList>();
@@ -25,6 +26,8 @@ const MainNavigation = () => {
         style: {
           height: 65,
         },
+        activeTintColor: purple,
+        keyboardHidesTabBar: true,
       }}
     >
       <BottomTab.Screen
