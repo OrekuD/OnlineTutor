@@ -18,3 +18,8 @@ export type ProfileStackParamList = {
   ProfileSettings: undefined;
   PaymentSettings: undefined;
 };
+
+export interface AppContext {
+  tabBarVisible: boolean;
+  setTabBarState: (state: boolean) => void;
+}

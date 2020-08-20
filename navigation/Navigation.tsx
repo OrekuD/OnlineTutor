@@ -13,6 +13,7 @@ import {
 import { Home, PaymentSettings, Profile, ProfileSettings } from "../screens";
 import { Feather } from "@expo/vector-icons";
 import { purple } from "../constants/Colors";
+import { useAppContext } from "../context/Context";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const HomeStack = createStackNavigator<HomeStackParamList>();
@@ -42,6 +43,7 @@ const ProfileNavigation = () => {
 };
 
 const MainNavigation = () => {
+  const { tabBarVisible } = useAppContext();
   return (
     <BottomTab.Navigator
       tabBarOptions={{
@@ -51,6 +53,9 @@ const MainNavigation = () => {
         },
         activeTintColor: purple,
         keyboardHidesTabBar: true,
+      }}
+      screenOptions={{
+        tabBarVisible,
       }}
     >
       <BottomTab.Screen
