@@ -13,6 +13,8 @@ export type HomeStackParamList = {
   Home: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type ProfileStackParamList = {
+  Profile: undefined;
+  ProfileSettings: undefined;
+  PaymentSettings: undefined;
 };
