@@ -8,7 +8,7 @@ import { Text, Button } from "../../components";
 import { Feather } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { height } from "../../constants/Layout";
-import { RectButton } from "react-native-gesture-handler";
+import { RectButton, BorderlessButton } from "react-native-gesture-handler";
 
 const scale = height > 700 ? 1.4 : 1.2;
 
@@ -27,12 +27,12 @@ const ProfileSettings = ({
   return (
     <ScrollView>
       <View style={{ ...styles.container, paddingTop }}>
-        <Feather
-          name="chevron-left"
-          size={34}
-          color={black}
+        <BorderlessButton
+          onPress={navigation.goBack}
           style={{ alignSelf: "flex-start", margin: 10 }}
-        />
+        >
+          <Feather name="chevron-left" size={34} color={black} />
+        </BorderlessButton>
         <Text
           variant="headline"
           style={{ alignSelf: "flex-start", fontSize: 28, marginLeft: 20 }}
