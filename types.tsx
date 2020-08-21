@@ -1,8 +1,10 @@
 import { ImageRequireSource } from "react-native";
 
 export type RootStackParamList = {
-  Root: undefined;
-  NotFound: undefined;
+  Main: undefined;
+  Mentor: {
+    item: MentorObj;
+  };
 };
 
 export type BottomTabParamList = {
@@ -23,9 +25,6 @@ export type ProfileStackParamList = {
 
 export type SearchStackParamList = {
   Search: undefined;
-  Mentor: {
-    item: MentorObj;
-  };
 };
 
 export interface AppContext {

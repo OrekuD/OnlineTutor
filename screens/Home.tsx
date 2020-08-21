@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { BottomTabParamList } from "../types";
+import { BottomTabParamList, RootStackParamList } from "../types";
 import { palewhite, white } from "../constants/Colors";
 import {
   Text,
@@ -11,10 +11,9 @@ import {
   Offers,
 } from "../components";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { StackScreenProps } from "@react-navigation/stack";
 
-const Home = ({
-  navigation,
-}: BottomTabScreenProps<BottomTabParamList, "Home">) => {
+const Home = ({ navigation }: StackScreenProps<RootStackParamList, "Main">) => {
   const { top: paddingTop } = useSafeAreaInsets();
   return (
     <>
@@ -41,7 +40,7 @@ const Home = ({
           <View style={{ marginHorizontal: 20 }}>
             <Searchbar />
           </View>
-          <PopularMentors />
+          <PopularMentors navigation={navigation} />
           <Suggestions />
           <Offers />
         </View>

@@ -6,10 +6,11 @@ import { white } from "../../constants/Colors";
 import { RectButton } from "react-native-gesture-handler";
 import { logoMentors } from "../../data/logoMentors";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SearchStackParamList } from "../../types";
+import { SearchStackParamList, RootStackParamList } from "../../types";
+import { mentors } from "../../data/mentors";
 
 interface Props {
-  navigation: StackNavigationProp<SearchStackParamList, "Search">;
+  navigation: StackNavigationProp<RootStackParamList, "Main">;
 }
 
 const PopularMentors = ({ navigation }: Props) => {
@@ -27,7 +28,7 @@ const PopularMentors = ({ navigation }: Props) => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ marginVertical: 5 }}
       >
-        {logoMentors.map((item, index) => {
+        {mentors.map((item, index) => {
           const { id, name, price, image } = item;
           return (
             <RectButton

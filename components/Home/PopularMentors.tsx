@@ -1,18 +1,19 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 import Text from "../Text";
 import { popular } from "../../data/popular";
 import { width } from "../../constants/Layout";
 import { white } from "../../constants/Colors";
 import { RectButton } from "react-native-gesture-handler";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../types";
+import { mentors } from "../../data/mentors";
 
-const PopularMentors = () => {
+interface Props {
+  navigation: StackNavigationProp<RootStackParamList, "Main">;
+}
+
+const PopularMentors = ({ navigation }: Props) => {
   return (
     <View>
       <Text
@@ -27,23 +28,27 @@ const PopularMentors = () => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{ marginVertical: 5 }}
       >
-        {popular.map(({ id, name, role, image }, index) => (
-          <RectButton
-            key={id}
-            activeOpacity={0.9}
-            style={{ ...styles.card, marginLeft: index === 0 ? 20 : 0 }}
-          >
-            <Image source={image} style={styles.image} />
-            <View style={styles.content}>
-              <Text variant="headline" style={{ fontSize: 18 }}>
-                {name}
-              </Text>
-              <Text variant="caption" color="grey">
-                {role}
-              </Text>
-            </View>
-          </RectButton>
-        ))}
+        {mentors.map((item, index) => {
+          const { id, name, role, image } = item;
+          return (
+            <RectButton
+              key={id}
+              activeOpacity={0.9}
+              onPress={() => navigation.navigate("Mentor", {})}
+              style={{ ...styles.card, marginLeft: index === 0 ? 20 : 0 }}
+            >
+              <Image source={image} style={styles.image} />
+              <View style={styles.content}>
+                <Text variant="headline" style={{ fontSize: 18 }}>
+                  {name}
+                </Text>
+                <Text variant="caption" color="grey">
+                  {role.name}
+                </Text>
+              </View>
+            </RectButton>
+          );
+        })}
       </ScrollView>
     </View>
   );

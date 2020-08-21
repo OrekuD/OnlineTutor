@@ -10,18 +10,17 @@ import Text from "../Text";
 import { FontAwesome } from "@expo/vector-icons";
 import { gold } from "../../constants/Colors";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SearchStackParamList } from "../../types";
+import {
+  SearchStackParamList,
+  RootStackParamList,
+  MentorObj,
+} from "../../types";
 
 const IMAGE_SIZE = 60;
 
 interface CardProps {
-  item: {
-    name: string;
-    image: ImageRequireSource;
-    rating: number;
-    price: string;
-  };
-  navigation: StackNavigationProp<SearchStackParamList, "Search">;
+  item: MentorObj;
+  navigation: StackNavigationProp<RootStackParamList, "Main">;
 }
 
 const Card = ({ item, navigation }: CardProps) => {

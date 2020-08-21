@@ -10,6 +10,7 @@ import {
   HomeStackParamList,
   ProfileStackParamList,
   SearchStackParamList,
+  RootStackParamList,
 } from "../types";
 import {
   Home,
@@ -24,17 +25,18 @@ import { purple } from "../constants/Colors";
 import { useAppContext } from "../context/Context";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-const HomeStack = createStackNavigator<HomeStackParamList>();
+// const HomeStack = createStackNavigator<HomeStackParamList>();
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
-const SearchStack = createStackNavigator<SearchStackParamList>();
+// const SearchStack = createStackNavigator<SearchStackParamList>();
+const RootStack = createStackNavigator<RootStackParamList>();
 
-const HomeNavigation = () => {
-  return (
-    <HomeStack.Navigator headerMode="none">
-      <HomeStack.Screen name="Home" component={Home} />
-    </HomeStack.Navigator>
-  );
-};
+// const HomeNavigation = () => {
+//   return (
+//     <HomeStack.Navigator headerMode="none">
+//       <HomeStack.Screen name="Home" component={Home} />
+//     </HomeStack.Navigator>
+//   );
+// };
 
 const ProfileNavigation = () => {
   return (
@@ -51,21 +53,20 @@ const ProfileNavigation = () => {
   );
 };
 
-const SearchNavigation = () => {
-  return (
-    <SearchStack.Navigator
-      headerMode="none"
-      screenOptions={{
-        ...TransitionPresets.SlideFromRightIOS,
-      }}
-    >
-      <SearchStack.Screen name="Search" component={Search} />
-      <SearchStack.Screen name="Mentor" component={Mentor} />
-    </SearchStack.Navigator>
-  );
-};
+// const SearchNavigation = () => {
+//   return (
+//     <SearchStack.Navigator
+//       headerMode="none"
+//       screenOptions={{
+//         ...TransitionPresets.SlideFromRightIOS,
+//       }}
+//     >
+//       <SearchStack.Screen name="Search" component={Search} />
+//     </SearchStack.Navigator>
+//   );
+// };
 
-const MainNavigation = () => {
+const BottomNavigation = () => {
   const { tabBarVisible } = useAppContext();
   return (
     <BottomTab.Navigator
@@ -83,7 +84,7 @@ const MainNavigation = () => {
     >
       <BottomTab.Screen
         name="Home"
-        component={HomeNavigation}
+        component={Home}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="home" color={color} size={26} />
@@ -92,7 +93,7 @@ const MainNavigation = () => {
       />
       <BottomTab.Screen
         name="Search"
-        component={SearchNavigation}
+        component={Search}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="compass" color={color} size={26} />
@@ -112,10 +113,24 @@ const MainNavigation = () => {
   );
 };
 
+const RootNavigation = () => {
+  return (
+    <RootStack.Navigator
+      headerMode="none"
+      screenOptions={{
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
+    >
+      <RootStack.Screen name="Main" component={BottomNavigation} />
+      <RootStack.Screen name="Mentor" component={Mentor} />
+    </RootStack.Navigator>
+  );
+};
+
 const Navigation = () => {
   return (
     <NavigationContainer>
-      <MainNavigation />
+      <RootNavigation />
     </NavigationContainer>
   );
 };
