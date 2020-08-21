@@ -1,8 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { BottomTabParamList, RootStackParamList } from "../types";
-import { palewhite, white } from "../constants/Colors";
+import { RootStackParamList } from "../types";
+import { palewhite } from "../constants/Colors";
 import {
   Text,
   Searchbar,

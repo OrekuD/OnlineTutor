@@ -4,9 +4,8 @@ import Text from "../Text";
 import { width } from "../../constants/Layout";
 import { white } from "../../constants/Colors";
 import { RectButton } from "react-native-gesture-handler";
-import { logoMentors } from "../../data/logoMentors";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { SearchStackParamList, RootStackParamList } from "../../types";
+import { RootStackParamList } from "../../types";
 import { mentors } from "../../data/mentors";
 
 interface Props {

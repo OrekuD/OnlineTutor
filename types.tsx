@@ -13,18 +13,10 @@ export type BottomTabParamList = {
   Search: undefined;
 };
 
-export type HomeStackParamList = {
-  Home: undefined;
-};
-
 export type ProfileStackParamList = {
   Profile: undefined;
   ProfileSettings: undefined;
   PaymentSettings: undefined;
-};
-
-export type SearchStackParamList = {
-  Search: undefined;
 };
 
 export interface AppContext {

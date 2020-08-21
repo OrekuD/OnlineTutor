@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableHighlight,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import Text from "../Text";
 import { width } from "../../constants/Layout";
 import { RectButton } from "react-native-gesture-handler";

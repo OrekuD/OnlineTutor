@@ -1,20 +1,10 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ImageRequireSource,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import Text from "../Text";
 import { FontAwesome } from "@expo/vector-icons";
 import { gold } from "../../constants/Colors";
 import { StackNavigationProp } from "@react-navigation/stack";
-import {
-  SearchStackParamList,
-  RootStackParamList,
-  MentorObj,
-} from "../../types";
+import { RootStackParamList, MentorObj } from "../../types";
 
 const IMAGE_SIZE = 60;
 

@@ -7,9 +7,7 @@ import {
 } from "@react-navigation/stack";
 import {
   BottomTabParamList,
-  HomeStackParamList,
   ProfileStackParamList,
-  SearchStackParamList,
   RootStackParamList,
 } from "../types";
 import {
@@ -25,18 +23,8 @@ import { purple } from "../constants/Colors";
 import { useAppContext } from "../context/Context";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-// const HomeStack = createStackNavigator<HomeStackParamList>();
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
-// const SearchStack = createStackNavigator<SearchStackParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
-
-// const HomeNavigation = () => {
-//   return (
-//     <HomeStack.Navigator headerMode="none">
-//       <HomeStack.Screen name="Home" component={Home} />
-//     </HomeStack.Navigator>
-//   );
-// };
 
 const ProfileNavigation = () => {
   return (
@@ -52,19 +40,6 @@ const ProfileNavigation = () => {
     </ProfileStack.Navigator>
   );
 };
-
-// const SearchNavigation = () => {
-//   return (
-//     <SearchStack.Navigator
-//       headerMode="none"
-//       screenOptions={{
-//         ...TransitionPresets.SlideFromRightIOS,
-//       }}
-//     >
-//       <SearchStack.Screen name="Search" component={Search} />
-//     </SearchStack.Navigator>
-//   );
-// };
 
 const BottomNavigation = () => {
   const { tabBarVisible } = useAppContext();

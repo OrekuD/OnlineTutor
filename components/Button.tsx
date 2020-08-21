@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { purple } from "../constants/Colors";
 import { width } from "../constants/Layout";
 import Text from "./Text";

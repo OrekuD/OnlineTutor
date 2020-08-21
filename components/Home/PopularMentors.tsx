@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
 import Text from "../Text";
-import { popular } from "../../data/popular";
 import { width } from "../../constants/Layout";
 import { white } from "../../constants/Colors";
 import { RectButton } from "react-native-gesture-handler";
