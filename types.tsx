@@ -37,3 +37,11 @@ export interface MentorObj {
   };
   about: string;
 }
+
+export interface ReviewObj {
+  id: string;
+  name: string;
+  comment: string;
+  image: ImageRequireSource;
+  rating: number;
+}

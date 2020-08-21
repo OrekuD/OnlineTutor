@@ -1,18 +1,18 @@
 import React from "react";
 import { View, StyleSheet, ScrollView, Image } from "react-native";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { BottomTabParamList, SearchStackParamList } from "../../types";
-import { palewhite, black } from "../../constants/Colors";
+import { BottomTabParamList, RootStackParamList } from "../types";
+import { palewhite, black } from "../constants/Colors";
 import { BorderlessButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Text, PopularLogoMentors, Searchbar, Card } from "../../components";
+import { Text, PopularLogoMentors, Searchbar, Card } from "../components";
 import { StackScreenProps } from "@react-navigation/stack";
-import { mentors } from "../../data/mentors";
+import { mentors } from "../data/mentors";
 
 const Search = ({
   navigation,
-}: StackScreenProps<SearchStackParamList, "Search">) => {
+}: StackScreenProps<RootStackParamList, "Main">) => {
   const { top: height } = useSafeAreaInsets();
   return (
     <>
@@ -28,7 +28,7 @@ const Search = ({
         </View>
         <View style={styles.row}>
           <Image
-            source={require("../../assets/images/logo-design.png")}
+            source={require("../assets/images/logo-design.png")}
             style={styles.image}
             resizeMode="contain"
           />

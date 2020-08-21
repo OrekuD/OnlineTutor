@@ -33,10 +33,10 @@ const PopularMentors = ({ navigation }: Props) => {
             <RectButton
               key={id}
               activeOpacity={0.9}
-              onPress={() => navigation.navigate("Mentor", {})}
+              onPress={() => navigation.navigate("Mentor", { item })}
               style={{ ...styles.card, marginLeft: index === 0 ? 20 : 0 }}
             >
-              <Image source={image} style={styles.image} />
+              <Image source={image} style={styles.image} resizeMode="contain" />
               <View style={styles.content}>
                 <Text variant="headline" style={{ fontSize: 18 }}>
                   {name}
@@ -70,7 +70,6 @@ const styles = StyleSheet.create({
   image: {
     width: 55,
     height: 55,
-    borderRadius: 10,
   },
   content: {
     paddingLeft: 10,

@@ -1,4 +1,6 @@
-export const mentors = [
+import { MentorObj } from "../types";
+
+export const mentors: MentorObj[] = [
   {
     id: "0",
     name: "Martha K",

@@ -3,6 +3,7 @@ import { View, StyleSheet, Image } from "react-native";
 import Text from "../Text";
 import { width } from "../../constants/Layout";
 import { RectButton } from "react-native-gesture-handler";
+import { lightpurple } from "../../constants/Colors";
 
 const Offers = () => {
   return (
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     height: 200,
     marginTop: 15,
     borderRadius: 10,
-    backgroundColor: "#E6DAFE",
+    backgroundColor: lightpurple,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 20,
