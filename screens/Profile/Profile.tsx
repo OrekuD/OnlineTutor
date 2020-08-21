@@ -4,7 +4,7 @@ import { ProfileStackParamList } from "../../types";
 import { StackScreenProps } from "@react-navigation/stack";
 import { palewhite } from "../../constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Settings, ProfileDetails } from "../../components";
+import { Settings, ProfileDetails, FavouriteTopics } from "../../components";
 
 const Profile = ({
   navigation,
@@ -13,6 +13,7 @@ const Profile = ({
   return (
     <View style={{ ...styles.container, paddingTop: paddingTop * 2 }}>
       <ProfileDetails />
+      <FavouriteTopics />
       <Settings navigation={navigation} />
     </View>
   );

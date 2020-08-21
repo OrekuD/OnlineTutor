@@ -4,5 +4,6 @@ const palewhite = "#F6F6F8";
 const lightgrey = "#DFDFDF";
 const grey = "#707070";
 const black = "#000000";
+const gold = "#FEC107";
 
-export { purple, white, palewhite, lightgrey, grey, black };
+export { purple, white, palewhite, lightgrey, grey, black, gold };

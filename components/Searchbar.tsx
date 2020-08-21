@@ -4,9 +4,7 @@ import { purple, grey, white } from "../constants/Colors";
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons";
 
-interface SearchbarProps {}
-
-const Searchbar = (props: SearchbarProps) => {
+const Searchbar = () => {
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
@@ -38,9 +36,10 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-evenly",
   },
   textInputContainer: {
-    flex: 1,
+    width: "90%",
     marginRight: 40,
     flexDirection: "row",
     alignItems: "center",

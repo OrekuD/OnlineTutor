@@ -9,8 +9,16 @@ import {
   BottomTabParamList,
   HomeStackParamList,
   ProfileStackParamList,
+  SearchStackParamList,
 } from "../types";
-import { Home, PaymentSettings, Profile, ProfileSettings } from "../screens";
+import {
+  Home,
+  PaymentSettings,
+  Profile,
+  ProfileSettings,
+  Mentor,
+  Search,
+} from "../screens";
 import { Feather } from "@expo/vector-icons";
 import { purple } from "../constants/Colors";
 import { useAppContext } from "../context/Context";
@@ -18,6 +26,7 @@ import { useAppContext } from "../context/Context";
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const HomeStack = createStackNavigator<HomeStackParamList>();
 const ProfileStack = createStackNavigator<ProfileStackParamList>();
+const SearchStack = createStackNavigator<SearchStackParamList>();
 
 const HomeNavigation = () => {
   return (
@@ -39,6 +48,20 @@ const ProfileNavigation = () => {
       <ProfileStack.Screen name="ProfileSettings" component={ProfileSettings} />
       <ProfileStack.Screen name="PaymentSettings" component={PaymentSettings} />
     </ProfileStack.Navigator>
+  );
+};
+
+const SearchNavigation = () => {
+  return (
+    <SearchStack.Navigator
+      headerMode="none"
+      screenOptions={{
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
+    >
+      <SearchStack.Screen name="Search" component={Search} />
+      <SearchStack.Screen name="Mentor" component={Mentor} />
+    </SearchStack.Navigator>
   );
 };
 
@@ -69,7 +92,7 @@ const MainNavigation = () => {
       />
       <BottomTab.Screen
         name="Search"
-        component={HomeNavigation}
+        component={SearchNavigation}
         options={{
           tabBarIcon: ({ color }) => (
             <Feather name="compass" color={color} size={26} />

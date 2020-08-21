@@ -38,7 +38,9 @@ const Home = ({
           <Text variant="headline" style={{ marginHorizontal: 20 }}>
             tutors
           </Text>
-          <Searchbar />
+          <View style={{ marginHorizontal: 20 }}>
+            <Searchbar />
+          </View>
           <PopularMentors />
           <Suggestions />
           <Offers />
