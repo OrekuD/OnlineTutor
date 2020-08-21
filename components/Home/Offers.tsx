@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Text from "../Text";
 import { width } from "../../constants/Layout";
+import { RectButton } from "react-native-gesture-handler";
 
 const Offers = () => {
   return (
@@ -15,7 +16,7 @@ const Offers = () => {
       <Text variant="caption" color="grey">
         Offers for you
       </Text>
-      <TouchableOpacity activeOpacity={0.8} style={styles.card}>
+      <RectButton activeOpacity={0.8} style={styles.card}>
         <View style={styles.content}>
           <Text variant="caption" color="purple">
             Invite Friends
@@ -33,7 +34,7 @@ const Offers = () => {
           style={styles.image}
           resizeMode="contain"
         />
-      </TouchableOpacity>
+      </RectButton>
     </View>
   );
 };
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   card: {
     width: "100%",
     height: 200,
-    marginTop: 10,
+    marginTop: 15,
     borderRadius: 10,
     backgroundColor: "#E6DAFE",
     flexDirection: "row",

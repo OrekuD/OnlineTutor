@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, ScrollView, Image } from "react-native";
 import Text from "../Text";
 import { width } from "../../constants/Layout";
 import { white } from "../../constants/Colors";
 import { suggestions } from "../../data/suggestions";
+import { RectButton } from "react-native-gesture-handler";
 
 const CARD_WIDTH = width * 0.4;
 
@@ -29,16 +24,15 @@ const Suggestion = () => {
         contentContainerStyle={{ marginVertical: 5 }}
       >
         {suggestions.map(({ id, name, image }, index) => (
-          <TouchableOpacity
+          <RectButton
             key={id}
-            activeOpacity={0.9}
             style={{ ...styles.card, marginLeft: index === 0 ? 20 : 0 }}
           >
             <Image source={image} style={styles.image} resizeMode="contain" />
             <Text variant="subhead" style={{ fontSize: 18 }}>
               {name}
             </Text>
-          </TouchableOpacity>
+          </RectButton>
         ))}
       </ScrollView>
     </View>

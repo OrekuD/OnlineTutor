@@ -10,6 +10,7 @@ import Text from "../Text";
 import { popular } from "../../data/popular";
 import { width } from "../../constants/Layout";
 import { white } from "../../constants/Colors";
+import { RectButton } from "react-native-gesture-handler";
 
 const PopularMentors = () => {
   return (
@@ -27,7 +28,7 @@ const PopularMentors = () => {
         contentContainerStyle={{ marginVertical: 5 }}
       >
         {popular.map(({ id, name, role, image }, index) => (
-          <TouchableOpacity
+          <RectButton
             key={id}
             activeOpacity={0.9}
             style={{ ...styles.card, marginLeft: index === 0 ? 20 : 0 }}
@@ -41,7 +42,7 @@ const PopularMentors = () => {
                 {role}
               </Text>
             </View>
-          </TouchableOpacity>
+          </RectButton>
         ))}
       </ScrollView>
     </View>

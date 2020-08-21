@@ -16,7 +16,7 @@ const ProfileSettings = ({
   navigation,
 }: StackScreenProps<ProfileStackParamList, "ProfileSettings">) => {
   const { setTabBarState } = useAppContext();
-  const { top: paddingTop } = useSafeAreaInsets();
+  const { top: height } = useSafeAreaInsets();
 
   useEffect(() => {
     setTabBarState(false);
@@ -25,53 +25,56 @@ const ProfileSettings = ({
   }, []);
 
   return (
-    <ScrollView>
-      <View style={{ ...styles.container, paddingTop }}>
-        <BorderlessButton
-          onPress={navigation.goBack}
-          style={{ alignSelf: "flex-start", margin: 10 }}
-        >
-          <Feather name="chevron-left" size={34} color={black} />
-        </BorderlessButton>
-        <Text
-          variant="headline"
-          style={{ alignSelf: "flex-start", fontSize: 28, marginLeft: 20 }}
-        >
-          Edit profile
-        </Text>
-        <Image
-          source={require("../../assets/images/profile-3.png")}
-          style={styles.image}
-        />
-        <RectButton style={styles.button}>
-          <Text variant="caption" color="white">
-            Upload profile
+    <>
+      <View style={{ height, backgroundColor: palewhite }} />
+      <ScrollView>
+        <View style={styles.container}>
+          <BorderlessButton
+            onPress={navigation.goBack}
+            style={{ alignSelf: "flex-start", margin: 10 }}
+          >
+            <Feather name="chevron-left" size={34} color={black} />
+          </BorderlessButton>
+          <Text
+            variant="headline"
+            style={{ alignSelf: "flex-start", fontSize: 28, marginLeft: 20 }}
+          >
+            Edit profile
           </Text>
-        </RectButton>
-        <View style={styles.content}>
-          <View style={styles.section}>
-            <Text variant="caption" color="grey">
-              Full Name
+          <Image
+            source={require("../../assets/images/profile-3.png")}
+            style={styles.image}
+          />
+          <RectButton style={styles.button}>
+            <Text variant="caption" color="white">
+              Upload profile
             </Text>
-            <TextInput style={styles.textInput} />
+          </RectButton>
+          <View style={styles.content}>
+            <View style={styles.section}>
+              <Text variant="caption" color="grey">
+                Full Name
+              </Text>
+              <TextInput style={styles.textInput} />
+            </View>
+            <View style={styles.section}>
+              <Text variant="caption" color="grey">
+                Email
+              </Text>
+              <TextInput style={styles.textInput} />
+            </View>
+            <View style={styles.section}>
+              <Text variant="caption" color="grey">
+                Password
+              </Text>
+              <TextInput style={styles.textInput} secureTextEntry={true} />
+            </View>
           </View>
-          <View style={styles.section}>
-            <Text variant="caption" color="grey">
-              Email
-            </Text>
-            <TextInput style={styles.textInput} />
-          </View>
-          <View style={styles.section}>
-            <Text variant="caption" color="grey">
-              Password
-            </Text>
-            <TextInput style={styles.textInput} secureTextEntry={true} />
-          </View>
+          <View style={{ height: 80 }} />
+          <Button label="Save changes" />
         </View>
-        <View style={{ height: 80 }} />
-        <Button label="Save changes" />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 };
 
