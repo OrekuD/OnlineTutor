@@ -1,19 +1,48 @@
 import React, { useState, useRef, useEffect } from "react";
-import { View, StyleSheet, ScrollView, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { Text, Button, ReviewCard, DetailsCard } from "../components";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../types";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { palewhite, black, white, grey, lightgrey } from "../constants/Colors";
-import { BorderlessButton } from "react-native-gesture-handler";
+import {
+  palewhite,
+  black,
+  white,
+  grey,
+  lightgrey,
+  purple,
+} from "../constants/Colors";
+import { BorderlessButton, RectButton } from "react-native-gesture-handler";
 import { Feather, Octicons } from "@expo/vector-icons";
 import { height, width } from "../constants/Layout";
 import { reviews } from "../data/reviews";
 import BottomSheetBehavior from "reanimated-bottom-sheet";
+import { LinearGradient } from "expo-linear-gradient";
 
 const scale = height > 700 ? 1.4 : 1.2;
 
-const renderContent = () => (
+const availableTimes = [
+  "9:00 AM",
+  "9:30 AM",
+  "10:00 AM",
+  "10:30 AM",
+  "11:00 AM",
+  "11:30 AM",
+];
+
+const BottomSheet = ({
+  activeTimeIndex,
+  setActiveTimeIndex,
+}: {
+  activeTimeIndex: number;
+  setActiveTimeIndex: React.Dispatch<React.SetStateAction<number>>;
+}) => (
   <View style={styles.modalContent}>
     <View style={styles.knob} />
     <Text variant="caption" style={{ alignSelf: "center" }}>
@@ -32,12 +61,49 @@ const renderContent = () => (
         <Feather name="chevron-down" color={grey} size={28} />
       </View>
     </View>
-    <View style={{ ...styles.buttonContainer }}>
+    <View style={styles.timeSection}>
+      <Text variant="caption" style={{ marginVertical: 10 }}>
+        Select time
+      </Text>
+      <View style={styles.times}>
+        {availableTimes.map((time, index) => (
+          <RectButton
+            key={index}
+            activeOpacity={0.8}
+            onPress={() => setActiveTimeIndex(index)}
+            style={{
+              width: width * 0.28,
+              height: 55,
+              marginBottom: 15,
+              borderRadius: 5,
+            }}
+          >
+            <View
+              style={{
+                ...styles.time,
+                borderWidth: index === activeTimeIndex ? 1 : 0,
+              }}
+            >
+              <Text
+                variant="caption"
+                color={index === activeTimeIndex ? "purple" : "grey"}
+              >
+                {time}
+              </Text>
+            </View>
+          </RectButton>
+        ))}
+      </View>
+    </View>
+    <LinearGradient
+      colors={["transparent", white, white]}
+      style={{ ...styles.buttonContainer }}
+    >
       <Button
         label="Continue to payment"
         // onPress={() => setIsVisble(true)}
       />
-    </View>
+    </LinearGradient>
   </View>
 );
 
@@ -49,7 +115,7 @@ const Mentor = ({
     item: { image, name, experience, price, rating, role, about },
   } = route.params;
   const { top, bottom: paddingBottom } = useSafeAreaInsets();
-  const [isVisible, setIsVisble] = useState<boolean>(false);
+  const [activeTimeIndex, setActiveTimeIndex] = useState<number>(1);
   const bottomRef = useRef<BottomSheetBehavior>();
 
   const snapPoints = [0, height * 0.4, height * 0.7];
@@ -92,7 +158,7 @@ const Mentor = ({
               subtitle="Price"
             />
           </View>
-          <Text variant="caption" style={{ marginVertical: 5 }}>
+          <Text variant="caption" style={{ marginBottom: 5 }}>
             About
           </Text>
           <Text
@@ -110,15 +176,23 @@ const Mentor = ({
           ))}
         </View>
       </ScrollView>
-      <View style={{ ...styles.buttonContainer, paddingBottom }}>
+      <LinearGradient
+        colors={["transparent", white, white]}
+        style={{ ...styles.buttonContainer, paddingBottom }}
+      >
         <Button
           label="Schedule a class"
           onPress={() => bottomRef.current?.snapTo(2)}
         />
-      </View>
+      </LinearGradient>
       <BottomSheetBehavior
         snapPoints={snapPoints}
-        renderContent={renderContent}
+        renderContent={() => (
+          <BottomSheet
+            activeTimeIndex={activeTimeIndex}
+            setActiveTimeIndex={setActiveTimeIndex}
+          />
+        )}
         initialSnap={0}
         ref={bottomRef}
       />
@@ -158,7 +232,6 @@ const styles = StyleSheet.create({
     left: 0,
     width: width,
     height: 110,
-    backgroundColor: "rgba(255, 55, 255, 0.2)",
     justifyContent: "center",
   },
   alignCenter: {
@@ -168,7 +241,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   modalContainer: {
     flex: 1,
@@ -195,5 +268,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     margin: 15,
+  },
+  timeSection: {
+    margin: 15,
+  },
+  times: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  time: {
+    width: width * 0.28,
+    height: 55,
+    // backgroundColor: "red",
+    marginBottom: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: purple,
+    borderRadius: 5,
+    borderWidth: 1,
   },
 });
