@@ -27,6 +27,37 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const scale = height > 700 ? 1.4 : 1.2;
 
+const getDayName = (number: number) => {
+  let day;
+  switch (number) {
+    case 0:
+      day = "Sun";
+      break;
+    case 1:
+      day = "Mon";
+      break;
+    case 2:
+      day = "Tue";
+      break;
+    case 3:
+      day = "Wed";
+      break;
+    case 4:
+      day = "Thu";
+      break;
+    case 5:
+      day = "Fri";
+      break;
+    case 6:
+      day = "Sat";
+      break;
+    default:
+      break;
+  }
+
+  return day;
+};
+
 const availableTimes = [
   "9:00 AM",
   "9:30 AM",
@@ -35,66 +66,136 @@ const availableTimes = [
   "11:00 AM",
   "11:30 AM",
 ];
+const dates = [
+  {
+    date: new Date().getDate(),
+    day: getDayName(new Date().getDay()),
+  },
+  {
+    date: new Date().getDate() + 1,
+    day: getDayName(new Date().getDay() + 1),
+  },
+  {
+    date: new Date().getDate() + 2,
+    day: getDayName(new Date().getDay() + 2),
+  },
+  {
+    date: new Date().getDate() + 3,
+    day: getDayName(new Date().getDay() + 3),
+  },
+  {
+    date: new Date().getDate() + 4,
+    day: getDayName(new Date().getDay() + 4),
+  },
+  {
+    date: new Date().getDate() + 5,
+    day: getDayName(new Date().getDay() + 5),
+  },
+];
 
 const BottomSheet = ({
   activeTimeIndex,
+  activeDateIndex,
   setActiveTimeIndex,
+  setActiveDateIndex,
 }: {
   activeTimeIndex: number;
   setActiveTimeIndex: React.Dispatch<React.SetStateAction<number>>;
+  activeDateIndex: number;
+  setActiveDateIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => (
   <View style={styles.modalContent}>
     <View style={styles.knob} />
-    <Text variant="caption" style={{ alignSelf: "center" }}>
-      Schedule a class
-    </Text>
-    <View style={styles.section}>
-      <Text variant="caption">Select day</Text>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <Text
-          variant="caption"
-          color="grey"
-          style={{ marginRight: 3, marginBottom: 3 }}
-        >
-          July
-        </Text>
-        <Feather name="chevron-down" color={grey} size={28} />
-      </View>
-    </View>
-    <View style={styles.timeSection}>
-      <Text variant="caption" style={{ marginVertical: 10 }}>
-        Select time
+    <ScrollView>
+      <Text variant="caption" style={{ alignSelf: "center" }}>
+        Schedule a class
       </Text>
-      <View style={styles.times}>
-        {availableTimes.map((time, index) => (
+      <View style={styles.section}>
+        <Text variant="caption">Select day</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Text
+            variant="caption"
+            color="grey"
+            style={{ marginRight: 3, marginBottom: 3 }}
+          >
+            July
+          </Text>
+          <Feather name="chevron-down" color={grey} size={28} />
+        </View>
+      </View>
+      <View style={{ ...styles.times, marginHorizontal: 15 }}>
+        {dates.map(({ date, day }, index) => (
           <RectButton
             key={index}
-            activeOpacity={0.8}
-            onPress={() => setActiveTimeIndex(index)}
+            // activeOpacity={0.8}
+            onPress={() => setActiveDateIndex(index)}
             style={{
-              width: width * 0.28,
-              height: 55,
+              width: width * 0.125,
+              height: 75,
               marginBottom: 15,
               borderRadius: 5,
             }}
           >
             <View
               style={{
-                ...styles.time,
-                borderWidth: index === activeTimeIndex ? 1 : 0,
+                ...styles.date,
+                borderWidth: index === activeDateIndex ? 1 : 0,
               }}
             >
               <Text
                 variant="caption"
-                color={index === activeTimeIndex ? "purple" : "grey"}
+                color={index === activeDateIndex ? "purple" : "grey"}
+                style={{
+                  margin: 5,
+                }}
               >
-                {time}
+                {day}
+              </Text>
+              <Text
+                variant="caption"
+                color={index === activeDateIndex ? "purple" : "grey"}
+              >
+                {date}
               </Text>
             </View>
           </RectButton>
         ))}
       </View>
-    </View>
+      <View style={styles.timeSection}>
+        <Text variant="caption" style={{ marginVertical: 10 }}>
+          Select time
+        </Text>
+        <View style={styles.times}>
+          {availableTimes.map((time, index) => (
+            <RectButton
+              key={index}
+              activeOpacity={0.8}
+              onPress={() => setActiveTimeIndex(index)}
+              style={{
+                width: width * 0.28,
+                height: 55,
+                marginBottom: 10,
+                borderRadius: 5,
+              }}
+            >
+              <View
+                style={{
+                  ...styles.time,
+                  borderWidth: index === activeTimeIndex ? 1 : 0,
+                }}
+              >
+                <Text
+                  variant="caption"
+                  color={index === activeTimeIndex ? "purple" : "grey"}
+                >
+                  {time}
+                </Text>
+              </View>
+            </RectButton>
+          ))}
+        </View>
+      </View>
+    </ScrollView>
     <LinearGradient
       colors={["transparent", white, white]}
       style={{ ...styles.buttonContainer }}
@@ -116,6 +217,7 @@ const Mentor = ({
   } = route.params;
   const { top, bottom: paddingBottom } = useSafeAreaInsets();
   const [activeTimeIndex, setActiveTimeIndex] = useState<number>(1);
+  const [activeDateIndex, setActiveDateIndex] = useState<number>(1);
   const bottomRef = useRef<BottomSheetBehavior>();
 
   const snapPoints = [0, height * 0.4, height * 0.7];
@@ -191,6 +293,8 @@ const Mentor = ({
           <BottomSheet
             activeTimeIndex={activeTimeIndex}
             setActiveTimeIndex={setActiveTimeIndex}
+            activeDateIndex={activeDateIndex}
+            setActiveDateIndex={setActiveDateIndex}
           />
         )}
         initialSnap={0}
@@ -280,8 +384,15 @@ const styles = StyleSheet.create({
   time: {
     width: width * 0.28,
     height: 55,
-    // backgroundColor: "red",
-    marginBottom: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    borderColor: purple,
+    borderRadius: 5,
+    borderWidth: 1,
+  },
+  date: {
+    width: width * 0.125,
+    height: 75,
     alignItems: "center",
     justifyContent: "center",
     borderColor: purple,
