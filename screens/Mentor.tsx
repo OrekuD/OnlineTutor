@@ -24,39 +24,9 @@ import { height, width } from "../constants/Layout";
 import { reviews } from "../data/reviews";
 import BottomSheetBehavior from "reanimated-bottom-sheet";
 import { LinearGradient } from "expo-linear-gradient";
+import { getDayName } from "../util/getDayName";
 
 const scale = height > 700 ? 1.4 : 1.2;
-
-const getDayName = (number: number) => {
-  let day;
-  switch (number) {
-    case 0:
-      day = "Sun";
-      break;
-    case 1:
-      day = "Mon";
-      break;
-    case 2:
-      day = "Tue";
-      break;
-    case 3:
-      day = "Wed";
-      break;
-    case 4:
-      day = "Thu";
-      break;
-    case 5:
-      day = "Fri";
-      break;
-    case 6:
-      day = "Sat";
-      break;
-    default:
-      break;
-  }
-
-  return day;
-};
 
 const availableTimes = [
   "9:00 AM",
@@ -113,21 +83,15 @@ const BottomSheet = ({
       <View style={styles.section}>
         <Text variant="caption">Select day</Text>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text
-            variant="caption"
-            color="grey"
-            style={{ marginRight: 3, marginBottom: 3 }}
-          >
-            July
+          <Text variant="caption" color="grey">
+            {new Date().toDateString().slice(4, 8)}
           </Text>
-          <Feather name="chevron-down" color={grey} size={28} />
         </View>
       </View>
       <View style={{ ...styles.times, marginHorizontal: 15 }}>
         {dates.map(({ date, day }, index) => (
           <RectButton
             key={index}
-            // activeOpacity={0.8}
             onPress={() => setActiveDateIndex(index)}
             style={{
               width: width * 0.125,
@@ -169,7 +133,6 @@ const BottomSheet = ({
           {availableTimes.map((time, index) => (
             <RectButton
               key={index}
-              activeOpacity={0.8}
               onPress={() => setActiveTimeIndex(index)}
               style={{
                 width: width * 0.28,
