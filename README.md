@@ -1,5 +1,8 @@
 #### Online Tutor
 
+Built with Expo
+Here's a link to the design template [Inspiration](https://ui8.net/naveen-visuals/products/online-tutor-mobile-app)
+
 ##### App screenshots
 
 ![Screenshot 1](https://github.com/OrekuD/OnlineTutor/blob/master/assets/screenshots/1.jpg?raw=true)
